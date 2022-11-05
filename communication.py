@@ -14,6 +14,19 @@ def send():
         s.sendall(b"Hello, world")
         data = s.recv(1024)
 
+        
+def send():
+    message = input("Enter Message (max 4096 characters): ")
+    ip = input("Enter Recepient IP: ")
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(30.0)#Time out of 30 seconds if not received
+        s.connect((ip, PORT))
+        s.settimeout(None)#Always set timeout to none before sending.
+        s.sendall(message)
+        data = s.recv(1024)
+
+
+
 def receive():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
