@@ -5,11 +5,12 @@ import sys
 
 PORT = 65432  # The port used by the server
 VM_IP = "192.168.1.15"
+DINGUS_SERVER = '192.168.122.46'
 
 def send():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.settimeout(30.0)#Time out of 30 seconds if not received
-        s.connect((SERVER, PORT))
+        s.connect((ip, PORT))
         s.settimeout(None)#Always set timeout to none before sending.
         s.sendall(b"Hello, world")
         data = s.recv(1024)
@@ -63,3 +64,7 @@ def menuDisplay():
     print("===The Python Communicator===\n1) Send Message\n" +
      "2) Receive Message\n3) Exit")
 
+
+if __name__ == '__main__':
+    menuDisplay()
+    menuOption()
