@@ -10,7 +10,7 @@ DINGUS_SERVER = '192.168.122.46'
 def send():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.settimeout(30.0)#Time out of 30 seconds if not received
-        s.connect((ip, PORT))
+        s.connect((DINGUS_SERVER, PORT))
         s.settimeout(None)#Always set timeout to none before sending.
         s.sendall(b"Hello, world")
         data = s.recv(1024)
@@ -30,7 +30,7 @@ def send():
 
 def receive():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
+        s.bind((socket.gethostbyname("Host Name"), PORT)) #Inner brackets define a tuple CHANGE HOSTNAME TO THIS MACHINES NAME
         s.listen()
         conn, addr = s.accept()
         with conn:
