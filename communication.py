@@ -10,6 +10,7 @@ DINGUS_SERVER = "192.168.122.200"
 BINGUS_GUEST = "192.168.122.46"
 
 
+
 def send():
     message = input("Enter Message (max 4096 characters): ")
     ip = input("Enter Recepient IP: ")
@@ -66,5 +67,4 @@ def menuDisplay():
      "0) Exit")
 
 if __name__ == '__main__':
-    menuDisplay()
     menuOption()
