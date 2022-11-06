@@ -49,6 +49,7 @@ def exit():
     sys.exit()
 
 def menuOption():
+    menuDisplay()
     option = input("Enter option: ")
     if option == "0":
         exit()
