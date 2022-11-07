@@ -33,10 +33,10 @@ def send():
         socket1.connect((ip, PORT))
         socket1.settimeout(None)#Always set timeout to none before sending.
         print("Sending")
-        socket1.sendall(bytes(message, 'utf-8'))
+        socket1.sendall(bytes(message, 'utf-8'))#Sends the message as a byte stream
         data = socket1.recv(1024)
         print("Message sent successfully.")
-        socket1.recv(1024)
+        socket1.recv(1024) #recieves message back from server
         print(data.decode(), end="\n") #print a message recieved back from the server
 
 #This function handles the server side tasks.  The method will wait for any input on 
@@ -46,7 +46,7 @@ def receive():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((SERVER_IP, PORT)) #Inner brackets define a tuple CHANGE HOSTNAME TO THIS MACHINES NAME
         print("Waiting for message on port 65432")
-        s.listen()
+        s.listen() #Listen to the port
         conn, addr = s.accept()
         with conn:
             print(f"Connected by {addr}")
@@ -59,7 +59,7 @@ def receive():
                     print("Message:")
                     print(data.decode(),end="\n")
                     print("End of message")
-                    conn.send(bytes('Hello Host Operating System', 'utf-8'))
+                    conn.send(bytes('Hello Host Operating System', 'utf-8')) # Send messages back to the client 
                     conn.send(bytes('#<<END>>#', 'utf-8'))
                     exit = True
                     conn.close()
