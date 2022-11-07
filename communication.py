@@ -14,23 +14,23 @@ BINGUS_GUEST = "192.168.122.46"
 def send():
     message = input("Enter Message (max 4096 characters): ")
     ip = input("Enter Recepient IP: ")
-
-    addr = (HOST, PORT)
+ 
+    addr = ((ip, PORT))
     print(f"Startomg connection to {addr}")
     socket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket1.setblocking(False)
-    socket1.connect(addr)
+    #socket1.setblocking(True)
+    #socket1.connect(addr)
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as socket1:
         socket1.settimeout(30.0)#Time out of 30 seconds if not received
         socket1.connect((ip, PORT))
         socket1.settimeout(None)#Always set timeout to none before sending.
-        socket1.sendall(message)
+        socket1.sendall(bytes(message, 'utf-8'))
         data = socket1.recv(1024)
 
 def receive():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((socket.gethostbyname("Host Name"), PORT)) #Inner brackets define a tuple CHANGE HOSTNAME TO THIS MACHINES NAME
+        s.bind(("192.168.122.138", PORT)) #Inner brackets define a tuple CHANGE HOSTNAME TO THIS MACHINES NAME
         s.listen()
         conn, addr = s.accept()
         with conn:
