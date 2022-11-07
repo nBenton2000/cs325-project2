@@ -54,6 +54,7 @@ def receive():
                     print("End of message")
                     conn.send(bytes('Hello Host Operating System', 'utf-8'))
                     exit = True
+                    conn.close()
 
 def exit():
     print("Goodbye!")
