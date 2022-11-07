@@ -36,6 +36,7 @@ def send():
         print(data.decode(), end="\n")
 
 def receive():
+    endmessage = "#<<END>>#"
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(("192.168.122.138", PORT)) #Inner brackets define a tuple CHANGE HOSTNAME TO THIS MACHINES NAME
         print("Waiting for message on port 65432")
@@ -53,7 +54,7 @@ def receive():
                     print(data.decode(),end="\n")
                     print("End of message")
                     exit = True
-        conn.sendall(bytes("#<<END>>#", 'utf-8'))
+        conn.sendall(bytes(endmessage, 'utf-8'))
 
 def exit():
     print("Goodbye!")
