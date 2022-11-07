@@ -52,8 +52,8 @@ def receive():
                     print("Message:")
                     print(data.decode(),end="\n")
                     print("End of message")
-
-                conn.sendall(bytes("#<<END>>#", 'utf-8'))
+                    exit = True
+        conn.sendall(bytes("#<<END>>#", 'utf-8'))
 
 def exit():
     print("Goodbye!")
