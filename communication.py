@@ -52,7 +52,7 @@ def receive():
                     print("Message:")
                     print(data.decode(),end="\n")
                     print("End of message")
-                    conn.send(bytes('#<<END>>#', 'utf-8'))
+                    conn.send(bytes('Hello Host Operating System', 'utf-8'))
                     exit = True
 
 def exit():
