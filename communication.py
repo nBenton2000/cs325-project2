@@ -37,7 +37,7 @@ def send():
         data = socket1.recv(1024)
         print("Message sent successfully.")
         socket1.recv(1024)
-        print(data.decode(), end="\n")
+        print(data.decode(), end="\n") #print a message recieved back from the server
 
 #This function handles the server side tasks.  The method will wait for any input on 
 # desired port.  Right now the bound ip address is hard coded in the config above with
@@ -60,6 +60,7 @@ def receive():
                     print(data.decode(),end="\n")
                     print("End of message")
                     conn.send(bytes('Hello Host Operating System', 'utf-8'))
+                    conn.send(bytes('#<<END>>#', 'utf-8'))
                     exit = True
                     conn.close()
 
